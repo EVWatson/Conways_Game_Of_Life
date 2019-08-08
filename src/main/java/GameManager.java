@@ -5,6 +5,7 @@ public class GameManager {
    private CellGrid cellGrid;
 
     public GameManager(GameRules gameRules) {
+
         this.gameRules = gameRules;
     }
 
