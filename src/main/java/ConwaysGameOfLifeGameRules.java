@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class ConwaysGameOfLifeGameRules implements GameRules{
 
-
     @Override
     public ArrayList<Coordinates> decideCellFate(CellGrid cellGrid){
         ArrayList<Coordinates> nextGenerationOfLiveCells = new ArrayList<>();
