@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 public class CellGridTest {
 
     @Test
-    public void cellGridInitialisesWithSpecifiedNumberOfRowsOfCells(){
+    public void cellGridInitialisesWithSpecifiedNumberOfRows(){
 
         CellGrid cellGrid = new CellGrid(6,6);
 
@@ -16,7 +16,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellGridInitialisesWithSpecifiedNumberOfColumnsOfCells(){
+    public void cellGridInitialisesWithSpecifiedNumberOfColumns(){
 
         CellGrid cellGrid = new CellGrid(6,6);
 
@@ -46,19 +46,13 @@ public class CellGridTest {
         assertEquals(expectedColumns, actualColumns);
     }
 
-    @Test
-    public void getCellIsDeadReturnsCurrentStateOfCellAtSpecifiedCoordinates(){
-        CellGrid cellGrid = new CellGrid(6,6);
-        boolean cellIsAlive = cellGrid.getCellIsAlive(2,2);
-        assertFalse(cellIsAlive);
-    }
-
 //    validate minimum acceptable grid dimensions
 
-//    @Test
-//    public void ifDimensionsAreLessThanOneAndOneThrowsException(){
-//
-//    }
+
+
+
+
+
 
 
 }
