@@ -4,6 +4,7 @@ public class GameManager {
    private GameRules gameRules;
    private CellGrid cellGrid;
    private UserInputManager userInputManager;
+   private ConsolePrinter consolePrinter;
 
     public GameManager(GameRules gameRules, UserInputManager inputManager) {
         this.gameRules = gameRules;
@@ -32,19 +33,19 @@ public class GameManager {
 //    handle exceptions?? incorrect input = try again?
 
     private ArrayList<Coordinates> nominateActiveCells() {
-        PrintToConsole.enterLiveCellCoordinates();
+        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
         return this.userInputManager.getCoordinatesList();
     }
 
     private int[] initialiseGridSize()  {
-        PrintToConsole.enterDimensionsInstruction();
+        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
         return this.userInputManager.getCellGridDimensions();
     }
 
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
-        PrintToConsole.printString(CellGridTranslator.formatStringGridAsSingleString(printableCellGrid));
+        ConsolePrinter.printString(CellGridTranslator.formatStringGridAsSingleString(printableCellGrid));
     }
 
     private CellGrid updateGrid(CellGrid cellGrid){
