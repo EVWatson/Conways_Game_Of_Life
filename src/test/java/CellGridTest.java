@@ -46,16 +46,13 @@ public class CellGridTest {
         assertEquals(expectedColumns, actualColumns);
     }
 
-
-
-
-
 //    validate minimum acceptable grid dimensions
 
-//    @Test
-//    public void ifDimensionsAreLessThanOneAndOneThrowsException(){
-//
-//    }
+
+
+
+
+
 
 
 }

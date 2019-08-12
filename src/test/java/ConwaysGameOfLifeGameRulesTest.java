@@ -9,77 +9,55 @@ public class ConwaysGameOfLifeGameRulesTest {
 //    rules of the game
 
     @Test
-    public void whenCellIsAliveAndHasLessThanTwoLiveNeighboursCoordinatesAreNotAddedToNextGenerationArrayList(){
+    public void whenCellIsAliveAndHasTwoLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
+
         ArrayList<Coordinates> liveCells = new ArrayList<>();
+        liveCells.add(new Coordinates(0,1));
+        liveCells.add(new Coordinates(1,0));
         liveCells.add(new Coordinates(1,1));
         cellGrid.setCellState(liveCells);
 
         ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
 
-        assertFalse(nextGenerationOfLiveCells.contains(new Coordinates(1,1)));
-
+        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
     }
 
     @Test
-    public void whenCellIsAliveAndHasGreaterThanThreeLiveNeighboursCellCoordinatesAreNotAddedToNextGenerationArrayList(){
+    public void whenCellIsAliveAndHasThreeLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
 
         ArrayList<Coordinates> liveCells = new ArrayList<>();
+        liveCells.add(new Coordinates(0,1));
+        liveCells.add(new Coordinates(1,0));
+        liveCells.add(new Coordinates(1,1));
         liveCells.add(new Coordinates(1,2));
-        liveCells.add(new Coordinates(2,1));
-        liveCells.add(new Coordinates(2,2));
-        liveCells.add(new Coordinates(2,3));
-        liveCells.add(new Coordinates(3,2));
         cellGrid.setCellState(liveCells);
 
         ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
 
-        assertFalse(nextGenerationOfLiveCells.contains(new Coordinates(1,1)));
+        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
     }
 
     @Test
-    public void whenCellIsAliveAndHasTwoOrThreeLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
+    public void whenCellIsDeadAndHasThreeLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
 
         ArrayList<Coordinates> liveCells = new ArrayList<>();
+        liveCells.add(new Coordinates(0,1));
+        liveCells.add(new Coordinates(1,0));
         liveCells.add(new Coordinates(1,2));
-        liveCells.add(new Coordinates(2,1));
-        liveCells.add(new Coordinates(2,2));
-        liveCells.add(new Coordinates(2,3));
         cellGrid.setCellState(liveCells);
 
         ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
-        System.out.println(nextGenerationOfLiveCells.size());
+        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
 
-        for(Coordinates xy : nextGenerationOfLiveCells) {
-            System.out.println(xy.getX() + " " + xy.getY());
-        }
-
-
-
+        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
     }
-
-//    @Test
-//    public void whenCellIsDeadAndHasThreeLiveNeighboursCellBecomesAlive(){
-//        ConwaysGameOfLifeGameRules gameRules = new ConwaysGameOfLifeGameRules();
-//        CellGrid cellGrid = new CellGrid(3, 3);
-//
-//        ArrayList<Coordinates> liveCells = new ArrayList<>();
-//        liveCells.add(new Coordinates(1,1));
-//        liveCells.add(new Coordinates(2,2));
-//        liveCells.add(new Coordinates(1,3));
-//        cellGrid.setCellState(liveCells);
-//
-//
-//        gameRules.decideCellFate(cellGrid);
-//
-//        assertTrue(cellGrid.getCellIsAlive(0,1));
-//
-//    }
-
 
 }

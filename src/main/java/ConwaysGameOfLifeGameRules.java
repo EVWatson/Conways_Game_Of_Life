@@ -10,6 +10,7 @@ public class ConwaysGameOfLifeGameRules implements GameRules{
             for (int cellCol = 0; cellCol < cellGrid.getNumberOfColumns()-1; cellCol++) {
                 boolean cellIsAlive = cellGrid.getCellIsAlive(cellRow, cellCol);
                 Coordinates currentCellCoordinates = new Coordinates(cellRow, cellCol);
+
                 int numberOfLiveNeighbours = NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, currentCellCoordinates);
 
                 if (numberOfLiveNeighbours == 3) {
