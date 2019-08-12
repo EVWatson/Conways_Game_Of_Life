@@ -5,9 +5,6 @@ import java.util.ArrayList;
 
 public class ConwaysGameOfLifeGameRulesTest {
 
-//    cellgrid
-//    rules of the game
-
     @Test
     public void whenCellIsAliveAndHasTwoLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();

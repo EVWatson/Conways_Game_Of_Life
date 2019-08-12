@@ -1,20 +1,22 @@
 import java.util.*;
 
-public class UserInputManager {
+public class ConsoleInputManager implements UserInputManager {
 
 //    make user input separate entirely from validation?? still difficult to test as methods with user input are calling methods that i could test..
 
+
+//    think about how refactor exceptions
+//
+
     private static ArrayList<Coordinates> coordinates = new ArrayList<>();
 
-
-    public static int[] getCellGridDimensions() throws IncorrectInputException {
+    public int[] getCellGridDimensions() throws IncorrectInputException {
         Scanner userInput = new Scanner(System.in);
         String[] splitUserInput = userInput.next().split(",");
         return validateCellGridDimensions(splitUserInput);
     }
 
-    public static ArrayList<Coordinates> getCoordinatesOfLiveCells() throws IncorrectInputException{
-
+    public ArrayList<Coordinates> getCoordinatesList() throws IncorrectInputException{
         Scanner userInput = new Scanner(System.in);
         String[] splitIntoPairs = userInput.next().split("[| ]");
         splitArrayIntoCoordinates(splitIntoPairs);
