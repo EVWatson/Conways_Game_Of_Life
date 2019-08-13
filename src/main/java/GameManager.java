@@ -4,7 +4,7 @@ public class GameManager {
    private GameRules gameRules;
    private CellGrid cellGrid;
    private UserInputManager userInputManager;
-   private ConsolePrinter consolePrinter;
+   private Printer consolePrinter = new ConsolePrinter();
 
     public GameManager(GameRules gameRules, UserInputManager inputManager) {
         this.gameRules = gameRules;
@@ -25,7 +25,7 @@ public class GameManager {
 
         for (int turns = 0; turns < 20; turns++) {
             printCurrentGrid(cellGrid);
-            cellGrid = updateGrid(cellGrid);
+            cellGrid = createNextGeneration(cellGrid);
             Thread.sleep(1000);
         }
     }
@@ -45,10 +45,10 @@ public class GameManager {
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
-        ConsolePrinter.printString(CellGridTranslator.formatStringGridAsSingleString(printableCellGrid));
+        consolePrinter.print(CellGridTranslator.formatStringGridAsSingleString(printableCellGrid));
     }
 
-    private CellGrid updateGrid(CellGrid cellGrid){
+    private CellGrid createNextGeneration(CellGrid cellGrid){
         ArrayList<Coordinates> nextGenCells = gameRules.decideCellFate(cellGrid);
         cellGrid = new CellGrid(cellGrid.getNumberOfRows(), cellGrid.getNumberOfColumns());
         cellGrid.setCellState(nextGenCells);
