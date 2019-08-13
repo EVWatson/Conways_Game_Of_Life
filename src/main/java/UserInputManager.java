@@ -1,5 +1,5 @@
-import java.util.ArrayList;
 
 public interface UserInputManager {
-    public String getUserInput();
+    String getUserInput();
+    Boolean validateStringInput(String input);
 }

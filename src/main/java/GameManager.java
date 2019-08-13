@@ -16,31 +16,39 @@ public class GameManager {
 
 //    handle interrupedException
 
-    public void runGame() {
+    public void runGame() throws UnableToValidateInputException{
 
         int[] value = initialiseGridSize();
         cellGrid = new CellGrid(value[0], value[1]);
-        ArrayList<Coordinates> coords = nominateActiveCells();
-        cellGrid.setCellState(coords);
+//        ArrayList<Coordinates> coords = nominateActiveCells();
+//        cellGrid.setCellState(coords);
 
         for (int turns = 0; turns < 20; turns++) {
             printCurrentGrid(cellGrid);
             cellGrid = createNextGeneration(cellGrid);
-            Thread.sleep(1000);
+//            Thread.sleep(1000);
         }
     }
 
 //    handle exceptions?? incorrect input = try again?
 
-    private ArrayList<Coordinates> nominateActiveCells() {
-        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
-        return this.userInputManager.getCoordinatesList();
+    private int[] initialiseGridSize()throws UnableToValidateInputException{
+        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
+        int[] gridSize = {};
+        String input = this.userInputManager.getUserInput();
+        try {
+            this.userInputManager.validateStringInput(input);
+        }
+        catch(NumberFormatException e) {
+            throw new UnableToValidateInputException(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage(), e);
+        }
+        return gridSize;
     }
 
-    private int[] initialiseGridSize()  {
-        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
-        return this.userInputManager.getCellGridDimensions();
-    }
+//    private ArrayList<Coordinates> nominateActiveCells() {
+//        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
+////        return this.userInputManager.getCoordinatesList();
+//    }
 
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");

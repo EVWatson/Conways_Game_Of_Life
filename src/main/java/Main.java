@@ -7,6 +7,6 @@ public class Main {
     UserInputManager inputManager = new ConsoleInputManager();
     GameManager gameManager = new GameManager(gameRules, inputManager);
 
-    gameManager.runGame();
+//    gameManager.runGame();
     }
 }
