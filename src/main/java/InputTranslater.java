@@ -13,6 +13,8 @@ public class InputTranslater {
         return cellGridDimensions;
     }
 
+//    use first part of above method in below method for second string split
+
         public static ArrayList<Coordinates> splitStringIntoCoordinates (String inputValues){
             ArrayList<Coordinates> coordinates = new ArrayList<>();
             String[] splitIntoPairs = inputValues.split("[| ]");

@@ -6,10 +6,12 @@ public enum ErrorMessage {
     private String errMessage;
 
     ErrorMessage(String errMessage){
+
         this.errMessage = errMessage;
     }
 
     public String getErrMessage() {
+
         return errMessage;
     }
 }

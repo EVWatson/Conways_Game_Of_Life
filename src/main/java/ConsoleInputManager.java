@@ -1,5 +1,4 @@
 import java.util.*;
-import java.util.regex.Pattern;
 
 public class ConsoleInputManager implements UserInputManager {
 
@@ -10,8 +9,7 @@ public class ConsoleInputManager implements UserInputManager {
     }
 
     public Boolean validateStringInput(String input){
-//        ((input != null) && (!input.equals("")));
-        if(input.matches("^[1-9]"))
+        return (input.matches("([1-9]\\d*,[1-9]\\d*\\|?)+?"));
     }
 
 

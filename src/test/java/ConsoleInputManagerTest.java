@@ -41,9 +41,16 @@ public class ConsoleInputManagerTest {
     }
 
     @Test
-    public void givenStringIsNotValidWhenAnyNumberIsLessThanOne(){
+    public void givenStringIsNotValidWhenFirstNumberIsLessThanOne(){
         UserInputManager userInputManager = new ConsoleInputManager();
         String input = "0,2";
+        assertFalse(userInputManager.validateStringInput(input));
+    }
+
+    @Test
+    public void givenStringIsNotValidWhenAnyNumberIsLessThanOne(){
+        UserInputManager userInputManager = new ConsoleInputManager();
+        String input = "2,0";
         assertFalse(userInputManager.validateStringInput(input));
     }
 

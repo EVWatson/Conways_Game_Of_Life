@@ -11,6 +11,7 @@ public class GameManager {
         this.userInputManager = inputManager;
     }
 
+//    look up curses library for console display. ping andrew g when everything is on fire
 
 //   error handler class?
 
