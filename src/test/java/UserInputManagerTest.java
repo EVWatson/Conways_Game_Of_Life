@@ -7,8 +7,8 @@ public class UserInputManagerTest {
 //    no idea how to test this as it take user input with scanner
 
 
-//    @Test(expected = IncorrectInputException.class)
-//    public void ifDimensionsAreLessThanOneRowAndOneColumnThrowsException()throws IncorrectInputException{
+//    @Test(expected = UnableToValidateInputException.class)
+//    public void ifDimensionsAreLessThanOneRowAndOneColumnThrowsException()throws UnableToValidateInputException{
 //        ConsoleInputManager.getCellGridDimensions();
 //    }
 

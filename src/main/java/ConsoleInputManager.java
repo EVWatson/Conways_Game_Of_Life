@@ -1,60 +1,19 @@
 import java.util.*;
 
-public class UserInputManager {
+public class ConsoleInputManager implements UserInputManager {
 
-//    make user input separate entirely from validation?? still difficult to test as methods with user input are calling methods that i could test..
-
-    private static ArrayList<Coordinates> coordinates = new ArrayList<>();
-
-
-    public static int[] getCellGridDimensions() throws IncorrectInputException {
+    public String getUserInput(){
         Scanner userInput = new Scanner(System.in);
-        String[] splitUserInput = userInput.next().split(",");
-        return validateCellGridDimensions(splitUserInput);
+        return userInput.nextLine();
     }
 
-    public static ArrayList<Coordinates> getCoordinatesOfLiveCells() throws IncorrectInputException{
-
-        Scanner userInput = new Scanner(System.in);
-        String[] splitIntoPairs = userInput.next().split("[| ]");
-        splitArrayIntoCoordinates(splitIntoPairs);
-        return coordinates;
+    public Boolean validateStringInput(String input){
+        return (input.matches("([1-9]\\d*,[1-9]\\d*\\|?)+?"));
     }
 
-    private static int[] validateCellGridDimensions(String[] inputValues) throws IncorrectInputException{
-        int[] cellGridDimensions = new int[2];
-        if(inputValues.length == 2){
-            try {
-                cellGridDimensions[0] = Integer.parseInt(inputValues[0]);
-                cellGridDimensions[1] = Integer.parseInt(inputValues[1]);
-            }
-            catch (NumberFormatException e){
-                throw new IncorrectInputException("Input must be number,number: please try again", e);
-            }
-        }
-        else {
-            throw new IncorrectInputException("Input must be number,number: please try again");
-        }
-        return cellGridDimensions;
-    }
+//    validate for array bounds
 
-    private static void splitArrayIntoCoordinates(String[] coordinatePairs) throws IncorrectInputException {
-        if (coordinatePairs.length >= 1) {
-            try {
-                for (String pair : coordinatePairs) {
-                    String[] splitPair = pair.split(",");
-                    // validate pair?
-                    coordinates.add(new Coordinates((Integer.parseInt(splitPair[0])-1), (Integer.parseInt(splitPair[1]))-1));
-                }
-            }
-            catch(NumberFormatException e) {
-                throw new IncorrectInputException("Input must be number,number|number,number: please try again", e);
-            }
-        }
-        else {
-            throw new IncorrectInputException("Input must be number,number|number,number: please try again");
-        }
-    }
+
 }
 
 

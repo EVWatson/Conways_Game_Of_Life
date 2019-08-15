@@ -21,17 +21,17 @@ public class NeighbourCheckerTest {
     @Test
     public void whenCellHasLiveNeighboursDetermineNumberOfLiveNeighboursWillReturnTheNumberOfLiveNeighbours() {
         CellGrid cellGrid = new CellGrid(3, 3);
-        Coordinates coordinates = new Coordinates(1, 1);
 
         ArrayList<Coordinates> liveCells = new ArrayList<>();
         liveCells.add(new Coordinates(0, 1));
         liveCells.add(new Coordinates(1, 0));
-        liveCells.add(new Coordinates(1, 1));
         liveCells.add(new Coordinates(1, 2));
         cellGrid.setCellState(liveCells);
 
+        Coordinates coordinatesOfCellToCheck = new Coordinates(1, 1);
+
         int expectedLiveNeighbours = 3;
-        int actualLiveNeighbours = NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, coordinates);
+        int actualLiveNeighbours = NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, coordinatesOfCellToCheck);
 
         assertEquals(expectedLiveNeighbours, actualLiveNeighbours);
     }

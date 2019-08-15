@@ -65,7 +65,6 @@ public class NeighbourChecker {
         if (originalY == (cellGrid.getNumberOfColumns() - 1) + 1) {
             newY = 0;
         }
-
         return new Coordinates(newX, newY);
     }
 }
