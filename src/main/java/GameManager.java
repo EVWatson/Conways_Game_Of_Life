@@ -15,14 +15,13 @@ public class GameManager {
 
 //   error handler class?
 
-//    handle interrupedException
+//    handle interrupedException, and array out of bounds exception
 
-    public void runGame() throws UnableToValidateInputException{
-
-        int[] value = initialiseGridSize();
-        cellGrid = new CellGrid(value[0], value[1]);
-//        ArrayList<Coordinates> coords = nominateActiveCells();
-//        cellGrid.setCellState(coords);
+    public void runGame() {
+        int[] dimensions = initialiseGridSize();
+        cellGrid = new CellGrid(dimensions[0], dimensions[1]);
+        ArrayList<Coordinates> coords = nominateActiveCells();
+        cellGrid.setCellState(coords);
 
         for (int turns = 0; turns < 20; turns++) {
             printCurrentGrid(cellGrid);
@@ -33,23 +32,19 @@ public class GameManager {
 
 //    handle exceptions?? incorrect input = try again?
 
-    private int[] initialiseGridSize()throws UnableToValidateInputException{
+    private int[] initialiseGridSize(){
         consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
-        int[] gridSize = {};
         String input = this.userInputManager.getUserInput();
-        try {
-            this.userInputManager.validateStringInput(input);
-        }
-        catch(NumberFormatException e) {
-            throw new UnableToValidateInputException(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage(), e);
-        }
-        return gridSize;
+        this.userInputManager.validateStringInput(input);
+        return InputTranslater.splitStringIntoIntegers(input);
     }
 
-//    private ArrayList<Coordinates> nominateActiveCells() {
-//        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
-////        return this.userInputManager.getCoordinatesList();
-//    }
+    private ArrayList<Coordinates> nominateActiveCells() {
+        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
+        String input = this.userInputManager.getUserInput();
+        this.userInputManager.validateStringInput(input);
+        return InputTranslater.splitStringIntoCoordinates(input);
+    }
 
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
