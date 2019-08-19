@@ -7,12 +7,17 @@ public class ConsoleInputManager implements UserInputManager {
         return userInput.nextLine();
     }
 
-    public Boolean validateStringInput(String input){
-        return (input.matches("([1-9]\\d*,[1-9]\\d*\\|?)+?"));
+    public Boolean validateStringInput(String input) throws InvalidUserInputException {
+
+        if (input.matches("([1-9]\\d*,[1-9]\\d*\\|?)+?")) {
+            return true;
+        } else {
+            if (input.contains("|")) {
+                throw new InvalidUserInputException(ErrorMessage.INCORRECT_COORDINATE_FORMAT.getErrMessage());
+            }
+            throw new InvalidUserInputException(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage());
+        }
     }
-
-//    validate for array bounds
-
 
 }
 

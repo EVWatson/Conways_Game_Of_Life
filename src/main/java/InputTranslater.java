@@ -3,11 +3,11 @@ import java.util.ArrayList;
 public class InputTranslater {
 
 
-    public static int[] splitStringIntoIntegers(String inputValues) {
+    public static int[] splitStringIntoIntegers(String inputValues){
         String[] splitUserInput = inputValues.split(",");
         int[] intArray = new int[2];
-            intArray[0] = Integer.parseInt(splitUserInput[0]);
-            intArray[1] = Integer.parseInt(splitUserInput[1]);
+        intArray[0] = Integer.parseInt(splitUserInput[0]);
+        intArray[1] = Integer.parseInt(splitUserInput[1]);
         return intArray;
     }
 
