@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.function.Function;
 
 public class GameManager {
    private GameRules gameRules;
@@ -18,10 +19,20 @@ public class GameManager {
 //    handle interrupedException, and array out of bounds exception
 
     public void runGame()throws InterruptedException, InvalidUserInputException {
-        int[] dimensions = initialiseGridSize();
-       CellGrid cellGrid = new CellGrid(dimensions[0], dimensions[1]);
+        int[] dimensions;
+        try {
+            dimensions = initialiseGridSize();
+        } catch (InvalidUserInputException error){
+            throw error;
+        }
+        CellGrid cellGrid = new CellGrid(dimensions[0], dimensions[1]);
         ArrayList<Coordinates> coords = nominateActiveCells();
-        cellGrid.setCellState(coords);
+        try {
+            cellGrid.setCellState(coords);
+        }
+        catch (ArrayIndexOutOfBoundsException e){
+            throw new InvalidUserInputException(ErrorMessage.INCORRECT_COORDINATES.getErrMessage());
+        }
 
         for (int turns = 0; turns < 20; turns++) {
             printCurrentGrid(cellGrid);
@@ -30,7 +41,10 @@ public class GameManager {
                 Thread.sleep(1000);
             }
             catch (InterruptedException e){
-                throw new InterruptedException("Do you want to stop the program?");
+                System.out.println("Do you want to stop the program?");
+                // get input
+                // if yes, rethrow exception
+                // if no, do nothing
             }
         }
     }
@@ -39,31 +53,33 @@ public class GameManager {
 
 //    lots of duplicate code here.
 
-    private int[] initialiseGridSize() {
+    private int[] initialiseGridSize() throws InvalidUserInputException {
         consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
-        String input = this.userInputManager.getUserInput();
-        try {
-            this.userInputManager.validateStringInput(input);
+        int attemptsLeft = 3;
+        while(attemptsLeft > 0){
+            String input = this.userInputManager.getUserInput();
+            if (this.userInputManager.validateStringInput(input)) {
+                return InputTranslator.splitStringIntoIntegers(input);
+            } else {
+                System.out.println(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage());
+                attemptsLeft--;
+            }
         }
-        catch (InvalidUserInputException e){
-            System.out.println(e.getMessage());
-        }
-        return InputTranslater.splitStringIntoIntegers(input);
+        throw new InvalidUserInputException("Attempt limit exceeded");
     }
 
-    private ArrayList<Coordinates> nominateActiveCells() throws InvalidUserInputException{
+    private ArrayList<Coordinates> nominateActiveCells() {
         consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
         String input = this.userInputManager.getUserInput();
         try {
-            this.userInputManager.validateStringInput(input);
+            if(!this.userInputManager.validateStringInput(input)){
+                throw new InvalidUserInputException(ErrorMessage.INCORRECT_COORDINATE_FORMAT.getErrMessage());
+            }
         }
         catch (InvalidUserInputException e){
             System.out.println(e.getMessage());
         }
-        catch (ArrayIndexOutOfBoundsException e) {
-            throw new InvalidUserInputException(ErrorMessage.INCORRECT_COORDINATES.getErrMessage(), e);
-        }
-        return InputTranslater.splitStringIntoCoordinates(input);
+        return InputTranslator.splitStringIntoCoordinates(input);
     }
 
     private void printCurrentGrid(CellGrid cellGrid) {
