@@ -17,6 +17,15 @@ public class CellGrid {
         }
     }
 
+    public void setCellState(ArrayList<Coordinates> coordinates){
+        for(int index = 0; index < coordinates.size(); index++){
+            Coordinates currentCoords = coordinates.get(index);
+            int xIndex = currentCoords.getX();
+            int yIndex = currentCoords.getY();
+            this.cellGrid[xIndex][yIndex].setCellToAlive();
+        }
+    }
+
     public int getNumberOfRows(){
 
         return this.cellGrid.length;
@@ -30,15 +39,6 @@ public class CellGrid {
     public Boolean getCellIsAlive(int x, int y){
 
         return this.cellGrid[x][y].getIsAlive();
-    }
-
-    public void setCellState(ArrayList<Coordinates> coordinates){
-        for(int index = 0; index < coordinates.size(); index++){
-            Coordinates currentCoords = coordinates.get(index);
-            int xIndex = currentCoords.getX();
-            int yIndex = currentCoords.getY();
-            this.cellGrid[xIndex][yIndex].setCellToAlive();
-        }
     }
 
 }

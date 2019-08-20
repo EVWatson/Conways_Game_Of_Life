@@ -20,7 +20,7 @@ public class CellGridTranslator {
         return stringCellGrid;
     }
 
-    public static String formatStringGridAsSingleString(String[][] grid) {
+    public static String formatStringArrayAsSingleString(String[][] grid) {
         String gridAsString = "";
         for (String[] row : grid) {
             StringJoiner stringJoiner = new StringJoiner("  ");
