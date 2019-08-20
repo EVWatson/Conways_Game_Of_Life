@@ -21,6 +21,7 @@ public class GameManager {
         applyValidCoordinates(cellGrid, coordinates);
 
         for (int turns = 0; turns < 20; turns++) {
+//            consolePrinter.clearScreen();
             printCurrentGrid(cellGrid);
             cellGrid = createNextGeneration(cellGrid);
             try {
@@ -68,8 +69,10 @@ public class GameManager {
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
+        consolePrinter.clearScreen();
         consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid));
     }
+
 
 //    move createNextGeneration to cellgrid??
 
