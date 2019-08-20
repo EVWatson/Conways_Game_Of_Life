@@ -5,7 +5,6 @@ public enum ErrorMessage {
     INCORRECT_COORDINATES("Coordinates cannot be outside grid dimensions"),
     EXCEEDED_ATTEMPT_LIMIT("Attempt limit exceeded");
 
-
     private String errMessage;
 
     ErrorMessage(String errMessage){
