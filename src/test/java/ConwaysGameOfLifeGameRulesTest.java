@@ -5,6 +5,8 @@ import java.util.ArrayList;
 
 public class ConwaysGameOfLifeGameRulesTest {
 
+//    TODO check that new coordinates are actually the expected numbers
+
     @Test
     public void whenCellIsAliveAndHasTwoLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();

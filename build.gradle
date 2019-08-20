@@ -30,3 +30,7 @@ application {
     // Define the main class for the application
     mainClassName = 'Main'
 }
+
+run {
+    standardInput = System.in
+}

@@ -1,5 +1,7 @@
 import org.junit.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.Assert.*;
 
 public class CellGridTest {
@@ -37,7 +39,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellGridCanInitialiseWithMoreColumnsThanRows(){
+    public void cellGridCanInitialiseWithMoreColumnsThanRows() {
         CellGrid cellGrid = new CellGrid(6, 7);
 
         int expectedColumns = 7;
@@ -46,7 +48,23 @@ public class CellGridTest {
         assertEquals(expectedColumns, actualColumns);
     }
 
-//    validate minimum acceptable grid dimensions
+    @Test
+    public void cellStateIsSetToDeadUponInitialisationOfCellGrid(){
+        CellGrid cellGrid = new CellGrid(6,6);
+        boolean cellIsDead = cellGrid.getCellIsAlive(2,2);
+        assertFalse(cellIsDead);
+    }
+
+    @Test
+    public void cellStateIsSetToAliveAtSpecifiedCoordinates(){
+        CellGrid cellGrid = new CellGrid(6,6);
+
+        ArrayList<Coordinates> liveCells = new ArrayList<>();
+        liveCells.add(new Coordinates(0, 1));
+        cellGrid.setCellState(liveCells);
+
+        assertTrue(cellGrid.getCellIsAlive(0,1));
+    }
 
 
 

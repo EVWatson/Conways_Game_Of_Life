@@ -1,56 +1,71 @@
 import java.util.ArrayList;
 
+
 public class GameManager {
    private GameRules gameRules;
-   private CellGrid cellGrid;
    private UserInputManager userInputManager;
    private Printer consolePrinter = new ConsolePrinter();
+
+    //    look up curses library for console display. ping andrew g when everything is on fire
+
 
     public GameManager(GameRules gameRules, UserInputManager inputManager) {
         this.gameRules = gameRules;
         this.userInputManager = inputManager;
     }
 
-//    look up curses library for console display. ping andrew g when everything is on fire
-
-//   error handler class?
-
-//    handle interrupedException, and array out of bounds exception
-
-    public void runGame() {
+    public void runGame()throws InterruptedException, InvalidUserInputException {
         int[] dimensions = initialiseGridSize();
-        cellGrid = new CellGrid(dimensions[0], dimensions[1]);
-        ArrayList<Coordinates> coords = nominateActiveCells();
-        cellGrid.setCellState(coords);
+        CellGrid cellGrid = new CellGrid(dimensions[0], dimensions[1]);
+        ArrayList<Coordinates> coordinates = nominateActiveCells();
+        applyValidCoordinates(cellGrid, coordinates);
 
         for (int turns = 0; turns < 20; turns++) {
             printCurrentGrid(cellGrid);
             cellGrid = createNextGeneration(cellGrid);
-//            Thread.sleep(1000);
+                Thread.sleep(1000);
+
         }
     }
 
-//    handle exceptions?? incorrect input = try again?
-
-    private int[] initialiseGridSize(){
-        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
-        String input = this.userInputManager.getUserInput();
-        this.userInputManager.validateStringInput(input);
-        return InputTranslater.splitStringIntoIntegers(input);
+    private int[] initialiseGridSize()throws InvalidUserInputException{
+        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
+        String validatedInput = userInputManager.getCorrectUserInput(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage());
+        return InputTranslator.splitStringIntoIntegers(validatedInput);
     }
 
-    private ArrayList<Coordinates> nominateActiveCells() {
-        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
-        String input = this.userInputManager.getUserInput();
-        this.userInputManager.validateStringInput(input);
-        return InputTranslater.splitStringIntoCoordinates(input);
+    private ArrayList<Coordinates> nominateActiveCells()throws InvalidUserInputException {
+        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
+        String validatedStringInput = userInputManager.getCorrectUserInput(ErrorMessage.INCORRECT_COORDINATE_FORMAT.getErrMessage());
+        return InputTranslator.splitStringIntoCoordinates(validatedStringInput);
+    }
+
+    private void applyValidCoordinates(CellGrid cellGrid, ArrayList<Coordinates> initialCoordinates)throws InvalidUserInputException{
+        int attempts = 3;
+        while (attempts > 0) {
+            try {
+                cellGrid.setCellState(initialCoordinates);
+                break;
+            } catch (ArrayIndexOutOfBoundsException e) {
+                System.out.println(ErrorMessage.INCORRECT_COORDINATES.getErrMessage());
+                attempts--;
+                if(attempts == 0) {
+                    throw new InvalidUserInputException(ErrorMessage.EXCEEDED_ATTEMPT_LIMIT.getErrMessage());
+                }
+                initialCoordinates = nominateActiveCells();
+            }
+        }
     }
 
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
-        consolePrinter.print(CellGridTranslator.formatStringGridAsSingleString(printableCellGrid));
+        consolePrinter.clearScreen();
+        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid));
     }
+
+
+//    move createNextGeneration to cellgrid??
 
     private CellGrid createNextGeneration(CellGrid cellGrid){
         ArrayList<Coordinates> nextGenCells = gameRules.decideCellFate(cellGrid);
