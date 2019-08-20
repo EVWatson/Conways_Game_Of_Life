@@ -21,19 +21,10 @@ public class GameManager {
         applyValidCoordinates(cellGrid, coordinates);
 
         for (int turns = 0; turns < 20; turns++) {
-//            consolePrinter.clearScreen();
             printCurrentGrid(cellGrid);
             cellGrid = createNextGeneration(cellGrid);
-            try {
                 Thread.sleep(1000);
-            }
-            catch (InterruptedException e){
-                System.out.println(MessagesToPlayer.STOP_INPUT.getMessage());
-                String answer = userInputManager.getUserInput();
-                if(answer.equals("Y")){
-                    throw e;
-                }
-            }
+
         }
     }
 
