@@ -1,7 +1,5 @@
 public class Coordinates {
 
-//   TODO are tuples possible for this??? as a replacement
-
     private int x;
     private int y;
 

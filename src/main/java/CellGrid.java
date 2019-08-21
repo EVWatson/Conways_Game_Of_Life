@@ -17,7 +17,7 @@ public class CellGrid {
         }
     }
 
-    public void setCellState(ArrayList<Coordinates> coordinates){
+    public void setCellStateAsAlive(ArrayList<Coordinates> coordinates){
         for(int index = 0; index < coordinates.size(); index++){
             Coordinates currentCoords = coordinates.get(index);
             int xIndex = currentCoords.getX();
