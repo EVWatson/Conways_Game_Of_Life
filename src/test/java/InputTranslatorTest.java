@@ -19,8 +19,10 @@ public class InputTranslatorTest {
     public void whenGivenValidStringSplitStringIntoCoordinatesReturnsArrayListOfCoordinates(){
         String givenString = "1,1|2,2|3,3";
         ArrayList<Coordinates> coordinates = InputTranslator.splitStringIntoCoordinates(givenString);
+        int expectedArrayListSize = 3;
+        int actualArrayListSize = coordinates.size();
 
-        assertTrue(coordinates.contains(new Coordinates(1,1)));
+        assertEquals(expectedArrayListSize, actualArrayListSize);
     }
 
 }
