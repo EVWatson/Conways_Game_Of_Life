@@ -50,7 +50,7 @@ public class ConsoleInputManagerTest {
     @Test
     public void givenStringIsNotValidWhenAnyNumberIsLessThanOne(){
         UserInputManager userInputManager = new ConsoleInputManager();
-        String input = "2,0";
+        String input = "2,0|0,3";
         assertFalse(userInputManager.validateStringInput(input));
     }
 
@@ -69,7 +69,7 @@ public class ConsoleInputManagerTest {
     }
 
     @Test
-    public void givenStringIsNotValidIncorrectDelimitersAreGiven(){
+    public void givenStringIsNotValidWhenIncorrectDelimitersAreGiven(){
         UserInputManager userInputManager = new ConsoleInputManager();
         String input = "4,4 5'5";
         assertFalse(userInputManager.validateStringInput(input));

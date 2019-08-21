@@ -1,3 +1,6 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 
@@ -6,25 +9,27 @@ public class GameManager {
    private UserInputManager userInputManager;
    private Printer consolePrinter = new ConsolePrinter();
 
-    //    look up curses library for console display. ping andrew g when everything is on fire
-
 
     public GameManager(GameRules gameRules, UserInputManager inputManager) {
         this.gameRules = gameRules;
         this.userInputManager = inputManager;
     }
 
-    public void runGame()throws InterruptedException, InvalidUserInputException {
+    public void runGame()throws InterruptedException, InvalidUserInputException, IOException {
         int[] dimensions = initialiseGridSize();
         CellGrid cellGrid = new CellGrid(dimensions[0], dimensions[1]);
         ArrayList<Coordinates> coordinates = nominateActiveCells();
-        applyValidCoordinates(cellGrid, coordinates);
-
-        for (int turns = 0; turns < 20; turns++) {
-            printCurrentGrid(cellGrid);
-            cellGrid = createNextGeneration(cellGrid);
-                Thread.sleep(1000);
-
+        applyCoordinates(cellGrid, coordinates);
+        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
+        try {
+            while (!bufferedReader.ready()) {
+                printCurrentGrid(cellGrid);
+                cellGrid = createNextGeneration(cellGrid);
+                Thread.sleep(34);
+            }
+        }
+        finally {
+            bufferedReader.close();
         }
     }
 
@@ -40,11 +45,11 @@ public class GameManager {
         return InputTranslator.splitStringIntoCoordinates(validatedStringInput);
     }
 
-    private void applyValidCoordinates(CellGrid cellGrid, ArrayList<Coordinates> initialCoordinates)throws InvalidUserInputException{
+    private void applyCoordinates(CellGrid cellGrid, ArrayList<Coordinates> initialCoordinates)throws InvalidUserInputException{
         int attempts = 3;
         while (attempts > 0) {
             try {
-                cellGrid.setCellState(initialCoordinates);
+                cellGrid.setCellStateAsAlive(initialCoordinates);
                 break;
             } catch (ArrayIndexOutOfBoundsException e) {
                 System.out.println(ErrorMessage.INCORRECT_COORDINATES.getErrMessage());
@@ -61,16 +66,14 @@ public class GameManager {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
         consolePrinter.clearScreen();
-        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid));
+        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid) + "Press return twice to stop program");
     }
 
-
-//    move createNextGeneration to cellgrid??
 
     private CellGrid createNextGeneration(CellGrid cellGrid){
         ArrayList<Coordinates> nextGenCells = gameRules.decideCellFate(cellGrid);
         cellGrid = new CellGrid(cellGrid.getNumberOfRows(), cellGrid.getNumberOfColumns());
-        cellGrid.setCellState(nextGenCells);
+        cellGrid.setCellStateAsAlive(nextGenCells);
         return cellGrid;
     }
 }

@@ -51,8 +51,8 @@ public class CellGridTest {
     @Test
     public void cellStateIsSetToDeadUponInitialisationOfCellGrid(){
         CellGrid cellGrid = new CellGrid(6,6);
-        boolean cellIsDead = cellGrid.getCellIsAlive(2,2);
-        assertFalse(cellIsDead);
+        boolean cellIsAlive = cellGrid.getCellIsAlive(2,2);
+        assertFalse(cellIsAlive);
     }
 
     @Test
@@ -61,16 +61,9 @@ public class CellGridTest {
 
         ArrayList<Coordinates> liveCells = new ArrayList<>();
         liveCells.add(new Coordinates(0, 1));
-        cellGrid.setCellState(liveCells);
+        cellGrid.setCellStateAsAlive(liveCells);
 
         assertTrue(cellGrid.getCellIsAlive(0,1));
     }
-
-
-
-
-
-
-
 
 }

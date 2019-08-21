@@ -7,56 +7,107 @@ public class ConwaysGameOfLifeGameRulesTest {
 
 //    TODO check that new coordinates are actually the expected numbers
 
+
+
     @Test
-    public void whenCellIsAliveAndHasTwoLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
+    public void whenCellAtCurrentPositionIsAliveAndHasTwoLiveNeighboursWillBeAliveInNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
+        int[] currentCellPosition = {1,1};
 
-        ArrayList<Coordinates> liveCells = new ArrayList<>();
-        liveCells.add(new Coordinates(0,1));
-        liveCells.add(new Coordinates(1,0));
-        liveCells.add(new Coordinates(1,1));
-        cellGrid.setCellState(liveCells);
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,0));
+        coordinates.add(new Coordinates(1,1));
+        cellGrid.setCellStateAsAlive(coordinates);
 
-        ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
-        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
+        ArrayList<Coordinates> nextGenerationLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        CellGrid updatedGrid = new CellGrid(3,3);
+        updatedGrid.setCellStateAsAlive(nextGenerationLiveCells);
 
-        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
+        assertTrue(updatedGrid.getCellIsAlive(currentCellPosition[0], currentCellPosition[1]));
+    }
+
+
+
+    @Test
+    public void whenCellAtCurrentPositionIsAliveAndHasThreeLiveNeighboursWillBeAliveInNextGeneration(){
+        ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
+        CellGrid cellGrid = new CellGrid(3, 3);
+        int[] currentCellPosition = {1,1};
+
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,0));
+        coordinates.add(new Coordinates(1,1));
+        coordinates.add(new Coordinates(1,2));
+        cellGrid.setCellStateAsAlive(coordinates);
+
+
+        ArrayList<Coordinates> nextGenerationLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        CellGrid updatedGrid = new CellGrid(3,3);
+        updatedGrid.setCellStateAsAlive(nextGenerationLiveCells);
+
+        assertTrue(updatedGrid.getCellIsAlive(currentCellPosition[0], currentCellPosition[1]));
     }
 
     @Test
-    public void whenCellIsAliveAndHasThreeLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
+    public void whenCellAtCurrentPositionIsAliveAndHasLessThanTwoLiveNeighboursWillBeDeadNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
+        int[] currentCellPosition = {1,1};
 
-        ArrayList<Coordinates> liveCells = new ArrayList<>();
-        liveCells.add(new Coordinates(0,1));
-        liveCells.add(new Coordinates(1,0));
-        liveCells.add(new Coordinates(1,1));
-        liveCells.add(new Coordinates(1,2));
-        cellGrid.setCellState(liveCells);
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,1));
+        cellGrid.setCellStateAsAlive(coordinates);
 
-        ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
-        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
+        ArrayList<Coordinates> nextGenerationLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        CellGrid updatedGrid = new CellGrid(3,3);
+        updatedGrid.setCellStateAsAlive(nextGenerationLiveCells);
 
-        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
+        assertFalse(updatedGrid.getCellIsAlive(currentCellPosition[0], currentCellPosition[1]));
     }
 
     @Test
-    public void whenCellIsDeadAndHasThreeLiveNeighboursCellCoordinatesAreAddedToNextGenerationArrayList(){
+    public void whenCellAtCurrentPositionIsAliveAndHasMoreThanThreeLiveNeighboursWillBeDeadNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
+        int[] currentCellPosition = {1,1};
 
-        ArrayList<Coordinates> liveCells = new ArrayList<>();
-        liveCells.add(new Coordinates(0,1));
-        liveCells.add(new Coordinates(1,0));
-        liveCells.add(new Coordinates(1,2));
-        cellGrid.setCellState(liveCells);
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,0));
+        coordinates.add(new Coordinates(1,1));
+        coordinates.add(new Coordinates(1,2));
+        coordinates.add(new Coordinates(2,1));
 
-        ArrayList<Coordinates> nextGenerationOfLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
-        Coordinates coordinates = nextGenerationOfLiveCells.get(2);
+        cellGrid.setCellStateAsAlive(coordinates);
 
-        assertTrue(nextGenerationOfLiveCells.contains(coordinates));
+        ArrayList<Coordinates> nextGenerationLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        CellGrid updatedGrid = new CellGrid(3,3);
+        updatedGrid.setCellStateAsAlive(nextGenerationLiveCells);
+
+        assertFalse(updatedGrid.getCellIsAlive(currentCellPosition[0], currentCellPosition[1]));
+    }
+
+    @Test
+    public void whenCellAtCurrentPositionIsDeadAndHasThreeLiveNeighboursWillBeAliveNextGeneration(){
+        ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
+        CellGrid cellGrid = new CellGrid(3, 3);
+        int[] currentCellPosition = {1,1};
+
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,0));
+        coordinates.add(new Coordinates(1,2));
+        cellGrid.setCellStateAsAlive(coordinates);
+
+        ArrayList<Coordinates> nextGenerationLiveCells = conwaysGameOfLifeGameRules.decideCellFate(cellGrid);
+        CellGrid updatedGrid = new CellGrid(3,3);
+        updatedGrid.setCellStateAsAlive(nextGenerationLiveCells);
+
+        assertTrue(updatedGrid.getCellIsAlive(currentCellPosition[0], currentCellPosition[1]));
     }
 
 }
