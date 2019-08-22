@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class NeighbourCheckerTest {
 
     @Test
-    public void whenCellHasNoLiveNeighboursDetermineNumberOfLiveNeighboursReturnsZero() {
+    public void whenCellHasNoLiveNeighboursDetermineNumberOfLiveNeighboursReturnsNoLiveNeighbours() {
         CellGrid cellGrid = new CellGrid(3, 3);
         Coordinates coordinates = new Coordinates(1, 1);
 
@@ -19,7 +19,7 @@ public class NeighbourCheckerTest {
     }
 
     @Test
-    public void whenCellHasLiveNeighboursDetermineNumberOfLiveNeighboursWillReturnTheNumberOfLiveNeighbours() {
+    public void whenCellHasLiveNeighboursDetermineNumberOfLiveNeighboursReturnsTheNumberOfLiveNeighbours() {
         CellGrid cellGrid = new CellGrid(3, 3);
 
         ArrayList<Coordinates> coordinates = new ArrayList<>();
@@ -39,6 +39,19 @@ public class NeighbourCheckerTest {
     @Test
     public void getCoordinatesOfNeighboursWillReturnArrayListOfSizeEight() {
         CellGrid cellGrid = new CellGrid(3, 3);
+        Coordinates coordinates = new Coordinates(1, 1);
+
+        ArrayList<Coordinates> neighbourLocations = NeighbourChecker.getCoordinatesOfNeighbours(cellGrid, coordinates);
+
+        int expectedSize = 8;
+        int actualSize = neighbourLocations.size();
+
+        assertEquals(expectedSize, actualSize);
+    }
+
+    @Test
+    public void whenCellGridHasLessThanEightCellsGetCoordinatesOfNeighboursWillReturnArrayListOfSizeEight() {
+        CellGrid cellGrid = new CellGrid(1, 1);
         Coordinates coordinates = new Coordinates(1, 1);
 
         ArrayList<Coordinates> neighbourLocations = NeighbourChecker.getCoordinatesOfNeighbours(cellGrid, coordinates);
