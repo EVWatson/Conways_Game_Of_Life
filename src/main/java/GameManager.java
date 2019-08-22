@@ -47,7 +47,7 @@ public class GameManager {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
         consolePrinter.clearScreen();
-        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid) + "\nPress return to stop program");
+        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid) + "\nPress return to quit");
     }
 
     private CellGrid createNextGeneration(CellGrid cellGrid){
