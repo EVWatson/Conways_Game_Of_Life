@@ -61,7 +61,7 @@ public class NeighbourCheckerTest {
     }
 
     @Test
-    public void whenCellIsOnTheFirstRowAnyNeighboursAboveWrapToLastRow() {
+    public void whenCellIsOnTheFirstRowNeighboursAboveWrapToLastRow() {
         CellGrid cellGrid = new CellGrid(3, 3);
         Coordinates coordinates = new Coordinates(-1, 1);
 
@@ -72,7 +72,7 @@ public class NeighbourCheckerTest {
     }
 
     @Test
-    public void whenCellInOnTheFirstColumnAnyNeighboursToTheLeftWrapToLastColumn() {
+    public void whenCellInOnTheFirstColumnNeighboursToTheLeftWrapToLastColumn() {
         CellGrid cellGrid = new CellGrid(3, 3);
         Coordinates coordinates = new Coordinates(1, -1);
 
@@ -83,7 +83,7 @@ public class NeighbourCheckerTest {
     }
 
     @Test
-    public void whenCellIsOnTheLastRowAnyNeighboursBelowWrapToFirstRow() {
+    public void whenCellIsOnTheLastRowNeighboursBelowWrapToFirstRow() {
         CellGrid cellGrid = new CellGrid(3, 3);
         Coordinates coordinates = new Coordinates(3, 1);
 
@@ -94,7 +94,7 @@ public class NeighbourCheckerTest {
     }
 
     @Test
-    public void whenCellIsOnTheLastColumnAnyNeighboursToTheRightWrapToFirstColumn() {
+    public void whenCellIsOnTheLastColumnNeighboursToTheRightWrapToFirstColumn() {
         CellGrid cellGrid = new CellGrid(3, 3);
         Coordinates coordinates = new Coordinates(1, 2 + 1);
 
@@ -122,6 +122,30 @@ public class NeighbourCheckerTest {
         Coordinates coordinates = new Coordinates(3, -1);
 
         Coordinates expectedResult = new Coordinates(0, cellGrid.getNumberOfColumns() - 1);
+        Coordinates actualResult = NeighbourChecker.convertToWrappedCoordinates(cellGrid, coordinates.getX(), coordinates.getY());
+
+        assertEquals(expectedResult.getX(), actualResult.getX());
+        assertEquals(expectedResult.getY(), actualResult.getY());
+    }
+
+    @Test
+    public void whenCellIsOnTheTopRightCornerNeighbourToTheTopRightCornerWrapsToTheBottomLeftCorner() {
+        CellGrid cellGrid = new CellGrid(3, 3);
+        Coordinates coordinates = new Coordinates(-1, 3);
+
+        Coordinates expectedResult = new Coordinates(cellGrid.getNumberOfRows() - 1, 0);
+        Coordinates actualResult = NeighbourChecker.convertToWrappedCoordinates(cellGrid, coordinates.getX(), coordinates.getY());
+
+        assertEquals(expectedResult.getX(), actualResult.getX());
+        assertEquals(expectedResult.getY(), actualResult.getY());
+    }
+
+    @Test
+    public void whenCellIsOnTheBottomRightCornerNeighbourToTheBottomRightCornerWrapsToTheTopLeftCorner() {
+        CellGrid cellGrid = new CellGrid(3, 3);
+        Coordinates coordinates = new Coordinates(3, 3);
+
+        Coordinates expectedResult = new Coordinates(0, 0);
         Coordinates actualResult = NeighbourChecker.convertToWrappedCoordinates(cellGrid, coordinates.getX(), coordinates.getY());
 
         assertEquals(expectedResult.getX(), actualResult.getX());

@@ -8,9 +8,7 @@ public class CellGridTest {
 
     @Test
     public void cellGridInitialisesWithSpecifiedNumberOfRows(){
-
         CellGrid cellGrid = new CellGrid(6,6);
-
         int expectedRows = 6;
         int actualRows = cellGrid.getNumberOfRows();
 
@@ -19,9 +17,7 @@ public class CellGridTest {
 
     @Test
     public void cellGridInitialisesWithSpecifiedNumberOfColumns(){
-
         CellGrid cellGrid = new CellGrid(6,6);
-
         int expectedColumns = 6;
         int actualColumns = cellGrid.getNumberOfColumns();
 
@@ -31,7 +27,6 @@ public class CellGridTest {
     @Test
     public void cellGridCanInitialiseWithMoreRowsThanColumns(){
         CellGrid cellGrid = new CellGrid(6,5);
-
         int expectedRows = 6;
         int actualRows = cellGrid.getNumberOfRows();
 
@@ -41,7 +36,6 @@ public class CellGridTest {
     @Test
     public void cellGridCanInitialiseWithMoreColumnsThanRows() {
         CellGrid cellGrid = new CellGrid(6, 7);
-
         int expectedColumns = 7;
         int actualColumns = cellGrid.getNumberOfColumns();
 
@@ -52,16 +46,17 @@ public class CellGridTest {
     public void cellStateIsSetToDeadUponInitialisationOfCellGrid(){
         CellGrid cellGrid = new CellGrid(6,6);
         boolean cellIsAlive = cellGrid.getCellIsAlive(2,2);
+
         assertFalse(cellIsAlive);
     }
 
     @Test
     public void cellStateIsSetToAliveAtSpecifiedCoordinates(){
         CellGrid cellGrid = new CellGrid(6,6);
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
 
-        ArrayList<Coordinates> liveCells = new ArrayList<>();
-        liveCells.add(new Coordinates(0, 1));
-        cellGrid.setCellStateAsAlive(liveCells);
+        coordinates.add(new Coordinates(0, 1));
+        cellGrid.setCellStateAsAlive(coordinates);
 
         assertTrue(cellGrid.getCellIsAlive(0,1));
     }

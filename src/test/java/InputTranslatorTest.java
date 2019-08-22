@@ -7,16 +7,16 @@ import static org.junit.Assert.*;
 public class InputTranslatorTest {
 
     @Test
-    public void whenGivenValidStringSplitStringIntoIntegersReturnsArrayOfIntegers(){
+    public void whenGivenStringFromInputSplitStringIntoIntegersReturnsArrayOfIntegers(){
         String givenString = "1,1";
         int [] expectedResult = {1,1};
-        int [] acutalResult = InputTranslator.splitStringIntoIntegers(givenString);
+        int [] actualResult = InputTranslator.splitStringIntoIntegers(givenString);
 
-        assertArrayEquals(expectedResult, acutalResult);
+        assertArrayEquals(expectedResult, actualResult);
     }
 
     @Test
-    public void whenGivenValidStringSplitStringIntoCoordinatesReturnsArrayListOfCoordinates(){
+    public void whenGivenStringFromInputSplitStringIntoCoordinatesReturnsArrayListOfCoordinates(){
         String givenString = "1,1|2,2|3,3";
         ArrayList<Coordinates> coordinates = InputTranslator.splitStringIntoCoordinates(givenString);
         int expectedArrayListSize = 3;

@@ -75,4 +75,5 @@ public class ConsoleInputManagerTest {
         assertFalse(userInputManager.validateStringInput(input));
     }
 
+
 }
