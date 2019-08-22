@@ -5,12 +5,8 @@ import java.util.ArrayList;
 
 public class ConwaysGameOfLifeGameRulesTest {
 
-//    TODO check that new coordinates are actually the expected numbers
-
-
-
     @Test
-    public void whenCellAtCurrentPositionIsAliveAndHasTwoLiveNeighboursWillBeAliveInNextGeneration(){
+    public void whenCellIsAliveAndHasTwoLiveNeighboursWillBeAliveInNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
         int[] currentCellPosition = {1,1};
@@ -31,7 +27,7 @@ public class ConwaysGameOfLifeGameRulesTest {
 
 
     @Test
-    public void whenCellAtCurrentPositionIsAliveAndHasThreeLiveNeighboursWillBeAliveInNextGeneration(){
+    public void whenCellIsAliveAndHasThreeLiveNeighboursWillBeAliveInNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
         int[] currentCellPosition = {1,1};
@@ -52,7 +48,7 @@ public class ConwaysGameOfLifeGameRulesTest {
     }
 
     @Test
-    public void whenCellAtCurrentPositionIsAliveAndHasLessThanTwoLiveNeighboursWillBeDeadNextGeneration(){
+    public void whenCellIsAliveAndHasLessThanTwoLiveNeighboursWillBeDeadNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
         int[] currentCellPosition = {1,1};
@@ -70,7 +66,7 @@ public class ConwaysGameOfLifeGameRulesTest {
     }
 
     @Test
-    public void whenCellAtCurrentPositionIsAliveAndHasMoreThanThreeLiveNeighboursWillBeDeadNextGeneration(){
+    public void whenCellIsAliveAndHasMoreThanThreeLiveNeighboursWillBeDeadNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
         int[] currentCellPosition = {1,1};
@@ -92,7 +88,7 @@ public class ConwaysGameOfLifeGameRulesTest {
     }
 
     @Test
-    public void whenCellAtCurrentPositionIsDeadAndHasThreeLiveNeighboursWillBeAliveNextGeneration(){
+    public void whenCellIsDeadAndHasThreeLiveNeighboursWillBeAliveNextGeneration(){
         ConwaysGameOfLifeGameRules conwaysGameOfLifeGameRules = new ConwaysGameOfLifeGameRules();
         CellGrid cellGrid = new CellGrid(3, 3);
         int[] currentCellPosition = {1,1};

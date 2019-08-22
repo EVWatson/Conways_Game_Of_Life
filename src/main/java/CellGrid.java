@@ -12,7 +12,7 @@ public class CellGrid {
     private void initialiseNewCellGrid(){
         for(int row = 0; row < this.cellGrid.length; row ++){
             for(int column = 0; column < this.cellGrid[row].length; column++){
-                cellGrid[row][column] = new Cell(false);
+                cellGrid[row][column] = new Cell();
             }
         }
     }

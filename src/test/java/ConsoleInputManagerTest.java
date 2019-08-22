@@ -27,7 +27,14 @@ public class ConsoleInputManagerTest {
 
 
     @Test
-    public void givenStringIsValidWhenMultipleNumberCommaNumbersAreSeparatedByAPipe(){
+    public void givenStringIsValidWhenAPairOfCoordinatesIsSeparatedByAPipe(){
+        UserInputManager userInputManager = new ConsoleInputManager();
+        String inputWithPipe = "1,1|2,2";
+        assertTrue(userInputManager.validateStringInput(inputWithPipe));
+    }
+
+    @Test
+    public void givenStringIsValidWhenMultipleCoordinatesAreSeparatedByMultiplePipes(){
         UserInputManager userInputManager = new ConsoleInputManager();
         String inputWithPipe = "1,1|2,2|3,3";
         assertTrue(userInputManager.validateStringInput(inputWithPipe));
@@ -48,9 +55,16 @@ public class ConsoleInputManagerTest {
     }
 
     @Test
+    public void givenStringIsNotValidWhenSecondNumberIsLessThanOne(){
+        UserInputManager userInputManager = new ConsoleInputManager();
+        String input = "2,0";
+        assertFalse(userInputManager.validateStringInput(input));
+    }
+
+    @Test
     public void givenStringIsNotValidWhenAnyNumberIsLessThanOne(){
         UserInputManager userInputManager = new ConsoleInputManager();
-        String input = "2,0|0,3";
+        String input = "2,4|0,3";
         assertFalse(userInputManager.validateStringInput(input));
     }
 
@@ -74,5 +88,20 @@ public class ConsoleInputManagerTest {
         String input = "4,4 5'5";
         assertFalse(userInputManager.validateStringInput(input));
     }
+
+    @Test
+    public void givenStringIsNotValidWhenInputContainsLetter(){
+        UserInputManager userInputManager = new ConsoleInputManager();
+        String input = "a,4";
+        assertFalse(userInputManager.validateStringInput(input));
+    }
+
+    @Test
+    public void givenStringIsNotValidWhenInputContainsSymbol(){
+        UserInputManager userInputManager = new ConsoleInputManager();
+        String input = "@,4";
+        assertFalse(userInputManager.validateStringInput(input));
+    }
+
 
 }
