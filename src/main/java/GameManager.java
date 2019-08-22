@@ -58,25 +58,3 @@ public class GameManager {
     }
 }
 
-//    private ArrayList<Coordinates> nominateActiveCells()throws InvalidUserInputException {
-//        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
-//        String validatedStringInput = userInputManager.getCorrectUserInput(ErrorMessage.INCORRECT_COORDINATE_FORMAT.getErrMessage());
-//        return InputTranslator.splitStringIntoCoordinates(validatedStringInput);
-//    }
-
-//    private void applyCoordinates(CellGrid cellGrid, ArrayList<Coordinates> initialCoordinates)throws InvalidUserInputException{
-//        int attempts = 3;
-//        while (attempts > 0) {
-//            try {
-//                cellGrid.setCellStateAsAlive(initialCoordinates);
-//                break;
-//            } catch (ArrayIndexOutOfBoundsException e) {
-//                System.out.println(ErrorMessage.INCORRECT_COORDINATES.getErrMessage());
-//                attempts--;
-//                if(attempts == 0) {
-//                    throw new InvalidUserInputException(ErrorMessage.EXCEEDED_ATTEMPT_LIMIT.getErrMessage());
-//                }
-//                initialCoordinates = nominateActiveCells();
-//            }
-//        }
-//    }
