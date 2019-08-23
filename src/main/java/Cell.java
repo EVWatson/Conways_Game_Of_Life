@@ -6,7 +6,7 @@ public class Cell {
         return isAlive;
     }
 
-    public void setCellToAlive(){
+    public void setCellToAlive() {
         this.isAlive = true;
     }
 

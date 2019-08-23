@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class GameManager {
    private GameRules gameRules;
    private UserInputManager userInputManager;
-   private Printer consolePrinter = new ConsolePrinter();
+   private OutputManager consoleConsoleOutputManager = new ConsoleOutputManager();
 
 
     public GameManager(GameRules gameRules, UserInputManager inputManager) {
@@ -32,29 +32,30 @@ public class GameManager {
         }
     }
 
-    private int[] initialiseGridSize()throws InvalidUserInputException{
-        consolePrinter.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
+    private int[] initialiseGridSize()throws InvalidUserInputException {
+        consoleConsoleOutputManager.print(MessagesToPlayer.ENTER_DIMENSIONS.getMessage());
         String validatedInput = userInputManager.getCorrectUserInput(ErrorMessage.INCORRECT_GRID_DIMENSIONS.getErrMessage());
         return InputTranslator.splitStringIntoIntegers(validatedInput);
     }
 
     private ArrayList<Coordinates> nominateActiveCells(CellGrid cellGrid)throws InvalidUserInputException {
-        consolePrinter.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
+        consoleConsoleOutputManager.print(MessagesToPlayer.ENTER_LIVE_CELL_COORDS.getMessage());
         return userInputManager.getCorrectCoordinates(cellGrid);
     }
 
     private void printCurrentGrid(CellGrid cellGrid) {
         System.out.println("\n");
         String [][] printableCellGrid = CellGridTranslator.getCellGridAsStringArray(cellGrid);
-        consolePrinter.clearScreen();
-        consolePrinter.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid) + "\nPress return to quit");
+        consoleConsoleOutputManager.clearScreen();
+        consoleConsoleOutputManager.print(CellGridTranslator.formatStringArrayAsSingleString(printableCellGrid) + "\nPress return to quit");
     }
 
-    private CellGrid createNextGeneration(CellGrid cellGrid){
+    private CellGrid createNextGeneration(CellGrid cellGrid) {
         ArrayList<Coordinates> nextGenCells = gameRules.decideCellFate(cellGrid);
         cellGrid = new CellGrid(cellGrid.getNumberOfRows(), cellGrid.getNumberOfColumns());
         cellGrid.setCellStateAsAlive(nextGenCells);
         return cellGrid;
     }
+
 }
 

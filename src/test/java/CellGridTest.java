@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class CellGridTest {
 
     @Test
-    public void cellGridInitialisesWithSpecifiedNumberOfRows(){
+    public void cellGridInitialisesWithSpecifiedNumberOfRows() {
         CellGrid cellGrid = new CellGrid(6,6);
         int expectedRows = 6;
         int actualRows = cellGrid.getNumberOfRows();
@@ -16,7 +16,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellGridInitialisesWithSpecifiedNumberOfColumns(){
+    public void cellGridInitialisesWithSpecifiedNumberOfColumns() {
         CellGrid cellGrid = new CellGrid(6,6);
         int expectedColumns = 6;
         int actualColumns = cellGrid.getNumberOfColumns();
@@ -25,7 +25,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellGridCanInitialiseWithMoreRowsThanColumns(){
+    public void cellGridCanInitialiseWithMoreRowsThanColumns() {
         CellGrid cellGrid = new CellGrid(6,5);
         int expectedRows = 6;
         int actualRows = cellGrid.getNumberOfRows();
@@ -43,7 +43,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellStateIsSetToDeadUponInitialisationOfCellGrid(){
+    public void cellStateIsSetToDeadUponInitialisationOfCellGrid() {
         CellGrid cellGrid = new CellGrid(6,6);
         boolean cellIsAlive = cellGrid.getCellIsAlive(2,2);
 
@@ -51,7 +51,7 @@ public class CellGridTest {
     }
 
     @Test
-    public void cellStateIsSetToAliveAtSpecifiedCoordinates(){
+    public void cellStateIsSetToAliveAtSpecifiedCoordinates() {
         CellGrid cellGrid = new CellGrid(6,6);
         ArrayList<Coordinates> coordinates = new ArrayList<>();
 

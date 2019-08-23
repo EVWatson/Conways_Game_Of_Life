@@ -60,4 +60,5 @@ public class NeighbourChecker {
         }
         return neighbourStates;
     }
+
 }

@@ -1,8 +1,8 @@
 import java.util.ArrayList;
 
-public class ConwaysGameOfLifeGameRules implements GameRules{
+public class ConwaysGameOfLifeGameRules implements GameRules {
 
-    public ArrayList<Coordinates> decideCellFate(CellGrid cellGrid){
+    public ArrayList<Coordinates> decideCellFate(CellGrid cellGrid) {
         ArrayList<Coordinates> nextGenerationOfLiveCells = new ArrayList<>();
 
         for(int cellRow = 0; cellRow < cellGrid.getNumberOfRows(); cellRow++) {

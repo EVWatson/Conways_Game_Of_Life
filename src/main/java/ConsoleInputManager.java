@@ -2,7 +2,7 @@ import java.util.*;
 
 public class ConsoleInputManager implements UserInputManager {
 
-    public String getUserInput(){
+    public String getUserInput() {
         Scanner userInput = new Scanner(System.in);
         return userInput.nextLine();
     }

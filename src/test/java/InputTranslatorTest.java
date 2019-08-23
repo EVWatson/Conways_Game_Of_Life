@@ -7,7 +7,7 @@ import static org.junit.Assert.*;
 public class InputTranslatorTest {
 
     @Test
-    public void whenStringHasCommasSplitStringIntoIntegersReturnsArrayOfIntegers(){
+    public void whenStringHasCommaSplitStringIntoIntegersReturnsArrayOfIntegers() {
         String givenString = "1,1";
         int [] expectedResult = {1,1};
         int [] actualResult = InputTranslator.splitStringIntoIntegers(givenString);
@@ -16,7 +16,7 @@ public class InputTranslatorTest {
     }
 
     @Test
-    public void whenStringHasNoPipeCharacterSplitStringIntoCoordinatesReturnsArrayOfCoordinates(){
+    public void whenStringHasNoPipeCharacterSplitStringIntoCoordinatesReturnsArrayOfCoordinates() {
         String givenString = "1,1";
         ArrayList<Coordinates> coordinates = InputTranslator.splitStringIntoCoordinates(givenString);
         int expectedArrayListSize = 1;
@@ -26,7 +26,7 @@ public class InputTranslatorTest {
     }
 
     @Test
-    public void whenStringHasPipeCharactersSplitStringIntoCoordinatesReturnsArrayOfCoordinates(){
+    public void whenStringHasPipeCharactersSplitStringIntoCoordinatesReturnsArrayOfCoordinates() {
         String givenString = "1,1|2,2|3,3";
         ArrayList<Coordinates> coordinates = InputTranslator.splitStringIntoCoordinates(givenString);
         int expectedArrayListSize = 3;

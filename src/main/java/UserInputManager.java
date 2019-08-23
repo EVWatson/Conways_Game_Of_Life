@@ -5,4 +5,4 @@ public interface UserInputManager {
     Boolean validateStringInput(String input);
     String getCorrectUserInput(String error) throws InvalidUserInputException;
     ArrayList<Coordinates> getCorrectCoordinates(CellGrid cellGrid)throws InvalidUserInputException;
-    }
+}

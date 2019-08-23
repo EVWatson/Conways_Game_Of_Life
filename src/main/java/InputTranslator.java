@@ -2,8 +2,7 @@ import java.util.ArrayList;
 
 public class InputTranslator {
 
-
-    public static int[] splitStringIntoIntegers(String inputValues){
+    public static int[] splitStringIntoIntegers(String inputValues) {
         String[] splitUserInput = inputValues.split(",");
         int[] intArray = new int[2];
         intArray[0] = Integer.parseInt(splitUserInput[0]);
@@ -11,7 +10,7 @@ public class InputTranslator {
         return intArray;
     }
 
-    public static ArrayList<Coordinates> splitStringIntoCoordinates (String inputValues){
+    public static ArrayList<Coordinates> splitStringIntoCoordinates (String inputValues) {
         ArrayList<Coordinates> coordinates = new ArrayList<>();
         String[] splitIntoPairs = inputValues.split("[| ]");
             for (String pair : splitIntoPairs) {
@@ -20,4 +19,5 @@ public class InputTranslator {
             }
         return coordinates;
     }
+
 }

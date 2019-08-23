@@ -15,7 +15,6 @@ public class NeighbourCheckerTest {
         int actualLiveNeighbours = NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, coordinates);
 
         assertEquals(expectedLiveNeighbours, actualLiveNeighbours);
-
     }
 
     @Test
@@ -34,6 +33,28 @@ public class NeighbourCheckerTest {
         int actualLiveNeighbours = NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, coordinatesOfCellToCheck);
 
         assertEquals(expectedLiveNeighbours, actualLiveNeighbours);
+    }
+
+    @Test
+    public void forEachCellOnGridNumberOfLiveNeighboursIsCalculated() {
+        CellGrid cellGrid = new CellGrid(2, 2);
+        ArrayList<Coordinates> coordinates = new ArrayList<>();
+        coordinates.add(new Coordinates(0,0));
+        coordinates.add(new Coordinates(0,1));
+        coordinates.add(new Coordinates(1,0));
+        coordinates.add(new Coordinates(1,1));
+        cellGrid.setCellStateAsAlive(coordinates);
+
+        int expectedTotalLiveNeighbours = 32;
+        int actualTotal = 0;
+
+        for(int cellRow = 0; cellRow < cellGrid.getNumberOfRows(); cellRow++) {
+            for (int cellCol = 0; cellCol < cellGrid.getNumberOfColumns(); cellCol++) {
+                Coordinates currentCellCoordinates = new Coordinates(cellRow, cellCol);
+                actualTotal += NeighbourChecker.determineTotalNumberOfLiveNeighbours(cellGrid, currentCellCoordinates);
+            }
+        }
+        assertEquals(expectedTotalLiveNeighbours, actualTotal);
     }
 
     @Test

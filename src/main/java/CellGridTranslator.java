@@ -1,6 +1,7 @@
 import java.util.StringJoiner;
 
 public class CellGridTranslator {
+
     private static final String ANSI_BROWN = "\033[1;33m";
     private static final String ANSI_GREEN = "\033[1;92m";
     private static final String ANSI_RESET = "\u001B[0m";
