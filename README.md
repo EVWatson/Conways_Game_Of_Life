@@ -1,16 +1,13 @@
 # Conway's Game of Life
 
-## Task breakdown
+To run the app:
 
-* Represent a Cell
-  * default state dead
-* Represent a 6 x 6 cell grid
-* Represent any size grid (dynamic at runtime)
-* Printing the grid to console
-  * Testing this? (let's pair on this)
-* Setting cells alive or dead
-* Take input to set cell alive or dead
-  * re-print the grid
------------
-* cycle calculations / updating cells on time tick/ etc.
-  * to be broken down
+1. Clone the repository from github.
+2. Open your terminal, and in the directory where you have saved Conway's Game of Life, run the following commands:
+
+```
+$ gradle build
+$ gradle run -q --console=plain
+```
+
+The app will then ask you to input the dimensions of the grid, and then to nominate the positions on the grid where you would like the cells to start the game as alive. Once the grid is configured, the Game of Life will begin. 
