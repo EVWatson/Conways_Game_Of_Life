@@ -1,3 +1,7 @@
+package com.emily.conways.service.output;
+
+import com.emily.conways.model.CellGrid;
+
 import java.util.StringJoiner;
 
 public class CellGridTranslator {

@@ -1,8 +1,10 @@
+package com.emily.conways.utils;
+
 public enum ErrorMessage {
 
     INCORRECT_GRID_DIMENSIONS("Input must be 'number,number' and cannot be 0,0; please try again"),
     INCORRECT_COORDINATE_FORMAT("Input must be 'number,number|number,number'; please try again"),
-    INCORRECT_COORDINATES("Coordinates cannot be larger than grid dimensions"),
+    INCORRECT_COORDINATES("com.emily.conways.model.Coordinates cannot be larger than grid dimensions"),
     EXCEEDED_ATTEMPT_LIMIT("Attempt limit exceeded");
 
     private String errMessage;

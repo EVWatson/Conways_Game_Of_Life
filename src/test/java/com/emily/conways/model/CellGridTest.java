@@ -1,3 +1,7 @@
+package com.emily.conways.model;
+
+import com.emily.conways.model.CellGrid;
+import com.emily.conways.model.Coordinates;
 import org.junit.Test;
 
 import java.util.ArrayList;

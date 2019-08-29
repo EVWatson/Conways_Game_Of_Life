@@ -1,3 +1,5 @@
+package com.emily.conways.service.output;
+
 public class ConsoleOutputManager implements OutputManager {
 
     public void print(String string) {

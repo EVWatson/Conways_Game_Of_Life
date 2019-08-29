@@ -1,3 +1,11 @@
+package com.emily.conways.service.input;
+
+import com.emily.conways.exception.InvalidUserInputException;
+import com.emily.conways.model.CellGrid;
+import com.emily.conways.model.Coordinates;
+import com.emily.conways.utils.ErrorMessage;
+import com.emily.conways.utils.MessagesToPlayer;
+
 import java.util.*;
 
 public class ConsoleInputManager implements UserInputManager {

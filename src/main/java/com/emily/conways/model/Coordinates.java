@@ -1,3 +1,5 @@
+package com.emily.conways.model;
+
 public class Coordinates {
 
     private int x;
