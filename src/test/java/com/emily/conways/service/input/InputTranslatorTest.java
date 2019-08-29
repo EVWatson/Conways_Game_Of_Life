@@ -1,16 +1,20 @@
+package com.emily.conways.service.input;
+
+import com.emily.conways.model.Coordinates;
 import org.junit.Test;
 
 import java.util.ArrayList;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertEquals;
 
 public class InputTranslatorTest {
 
     @Test
     public void whenStringHasCommaSplitStringIntoIntegersReturnsArrayOfIntegers() {
         String givenString = "1,1";
-        int [] expectedResult = {1,1};
-        int [] actualResult = InputTranslator.splitStringIntoIntegers(givenString);
+        int[] expectedResult = {1, 1};
+        int[] actualResult = InputTranslator.splitStringIntoIntegers(givenString);
 
         assertArrayEquals(expectedResult, actualResult);
     }

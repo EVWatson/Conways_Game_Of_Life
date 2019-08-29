@@ -1,3 +1,5 @@
+package com.emily.conways.utils;
+
 public enum MessagesToPlayer {
 
     ENTER_DIMENSIONS("Please enter dimensions of grid; i.e. rows,columns"),

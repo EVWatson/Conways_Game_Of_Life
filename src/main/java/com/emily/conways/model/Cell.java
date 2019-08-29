@@ -1,3 +1,5 @@
+package com.emily.conways.model;
+
 public class Cell {
 
     private Boolean isAlive = false;

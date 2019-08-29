@@ -1,3 +1,7 @@
+package com.emily.conways.service.input;
+
+import com.emily.conways.model.Coordinates;
+
 import java.util.ArrayList;
 
 public class InputTranslator {

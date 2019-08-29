@@ -1,3 +1,7 @@
+package com.emily.conways.service.input;
+
+import com.emily.conways.service.input.ConsoleInputManager;
+import com.emily.conways.service.input.UserInputManager;
 import org.junit.Test;
 
 import static org.junit.Assert.*;

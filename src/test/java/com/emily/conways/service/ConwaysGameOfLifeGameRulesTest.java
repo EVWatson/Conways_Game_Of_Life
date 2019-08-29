@@ -1,3 +1,8 @@
+package com.emily.conways.service;
+
+import com.emily.conways.model.CellGrid;
+import com.emily.conways.model.Coordinates;
+import com.emily.conways.service.ConwaysGameOfLifeGameRules;
 import org.junit.Test;
 import static org.junit.Assert.*;
 

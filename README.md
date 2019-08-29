@@ -2,7 +2,7 @@
 
 ## Task breakdown
 
-* Represent a Cell
+* Represent a com.emily.conways.model.Cell
   * default state dead
 * Represent a 6 x 6 cell grid
 * Represent any size grid (dynamic at runtime)
